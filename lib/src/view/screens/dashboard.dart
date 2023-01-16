@@ -26,7 +26,7 @@ class Dashboard extends StatelessWidget {
                   SizedBox(width: 35,),
                   reuableContainer(context,
                   child: Center(
-                    child: smallText("Search"),
+                    child: smallText("Search", clr: AppColor.darkBlue),
                   )),
                 ],
               ),

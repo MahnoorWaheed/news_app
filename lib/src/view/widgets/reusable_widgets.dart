@@ -31,7 +31,7 @@ Container reuableContainer(BuildContext context,
   Text largeText(String txt, {Color? clr,double? size}) {
     return Text(txt,
                 style: GoogleFonts.poppins(
-                  color: clr??AppColor.darkBlue,
+                  color: clr??Color(0xFF1E4088),
                    fontWeight: FontWeight.w600,
                    fontSize:size?? 15
                    ),);
