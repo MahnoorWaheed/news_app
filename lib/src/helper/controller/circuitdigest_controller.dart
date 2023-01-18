@@ -16,7 +16,7 @@ import 'package:http/http.dart' as http;
 
 
 class CircuitProvider with ChangeNotifier {
-  List<Cicuitdigest> floorPlanList=[];
+  List<Cicuitdigest> circuitDetailList=[];
   // List<PaymentPlan> paymentPlanList=[];
   // String bannerID;
   bool isLoading = false;
@@ -33,21 +33,21 @@ class CircuitProvider with ChangeNotifier {
     });
 
     try {
-      final floorPlanResponse = await http.get(
+      final circuitdigestResponse = await http.get(
           Uri.parse('http://45.33.23.205/circuitdigest_9/api-interviews'),
           
          );
 
-      var floorPlanResponseDecode = await jsonDecode(floorPlanResponse.body);
+      var circuitResponseDecode = await jsonDecode(circuitdigestResponse.body);
 
       var floorPlanFinalDecode =
-          await jsonDecode(floorPlanResponseDecode['Value']);
+          await jsonDecode(circuitResponseDecode['Value']);
 
-      floorPlanList = (floorPlanFinalDecode as List)
+      circuitDetailList = (floorPlanFinalDecode as List)
           .map((i) => Cicuitdigest.fromJson(i))
           .toList();
        notifyListeners();
-       log(floorPlanList.toString());
+       log(circuitDetailList.toString());
       // isLoading = false;
       // update([1]);
     } catch (e) {
