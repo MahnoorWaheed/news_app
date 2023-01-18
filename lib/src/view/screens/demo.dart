@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:news_app/src/helper/model/circui_digest_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:html/parser.dart' as html;
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 
@@ -36,10 +35,6 @@ Future? interviewsFuture;
               shrinkWrap: true,
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                // var document = html.parse(snapshot.data![index].body!);
-                // return Text(snapshot.data![index].title!);
-                // return Text(document.outerHtml);
-                // return HtmlWidget(document.outerHtml);
                 return HtmlWidget(snapshot.data![index].body!.replaceAll("/sites/", "https://circuitdigest.com/sites/"));
               },
             );

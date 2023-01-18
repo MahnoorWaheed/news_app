@@ -21,10 +21,10 @@ class Dashboard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      IconButton(onPressed: (){}, icon: Icon(Icons.menu, 
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.menu, 
                       color:AppColor.darkBlue
                       )),
-                      SizedBox(width: 35,),
+                      const SizedBox(width: 35,),
                       reuableContainer(context,
                       child: Center(
                         child: smallText("Search", clr: AppColor.darkBlue),
@@ -33,7 +33,7 @@ class Dashboard extends StatelessWidget {
                   ),
                   
                   Container(
-                    margin: EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.only(top: 20),
                     width: MediaQuery.of(context).size.width*0.55,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +55,7 @@ class Dashboard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                    Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -63,12 +63,12 @@ class Dashboard extends StatelessWidget {
                       Row(
                         children: [
                           smallText("view all"),
-                          Icon(Icons.arrow_forward_ios, color: Colors.red, size: 10,)
+                          const Icon(Icons.arrow_forward_ios, color: Colors.red, size: 10,)
                         ],
                       )
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -85,7 +85,7 @@ class Dashboard extends StatelessWidget {
                     ),
                   ),
                   largeText("All News"),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   reuableContainer(context,
                           hgt: MediaQuery.of(context).size.height*0.25,
                           wtd:MediaQuery.of(context).size.height*0.55 ,
@@ -93,25 +93,25 @@ class Dashboard extends StatelessWidget {
                             child: Image.asset("${value.circuitDetailList[0].fieldImage}"),
                           )
                           ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                 largeText("${value.circuitDetailList[0].title}"),
                 smallText("${value.circuitDetailList[0].body}",
                 clr: AppColor.darkBlue,
                 max: 2
                 ),
-                 SizedBox(height: 20),
+                 const SizedBox(height: 20),
                    Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       largeText("Today, 7:52 PM"),
                       GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>DashboardDetail()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> const DashboardDetail()));
                         },
                         child: Row(
                           children: [
                             smallText("read more"),
-                            Icon(Icons.arrow_forward_ios, color: Colors.red, size: 10,)
+                            const Icon(Icons.arrow_forward_ios, color: Colors.red, size: 10,)
                           ],
                         ))
                     ],

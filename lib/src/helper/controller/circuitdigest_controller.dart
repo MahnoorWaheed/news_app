@@ -40,7 +40,7 @@ class CircuitProvider with ChangeNotifier {
       // isLoading = false;
       // update([1]);
     } catch (e) {
-      print('INSIDE CATCH ::::::::: $e');
+      debugPrint('INSIDE CATCH ::::::::: $e');
       isLoading = false;
       // update([3]);
       notifyListeners();

@@ -50,4 +50,4 @@ final textFieldStyle = OutlineInputBorder(
 
 final errorTextFieldStyle = OutlineInputBorder(
     borderRadius: BorderRadius.circular(25),
-    borderSide: BorderSide(color: Colors.red, width: 1));
+    borderSide: const BorderSide(color: Colors.red, width: 1));

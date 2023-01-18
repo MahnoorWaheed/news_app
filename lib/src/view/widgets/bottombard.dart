@@ -7,10 +7,10 @@ class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar ({Key? key}) : super(key: key);  
   
   @override  
-  _MyNavigationBarState createState() => _MyNavigationBarState();  
+  MyNavigationBarState createState() => MyNavigationBarState();  
 }  
   
-class _MyNavigationBarState extends State<MyNavigationBar > {  
+class MyNavigationBarState extends State<MyNavigationBar > {  
   int _selectedIndex = 0;  
   static const List _widgetOptions = [  
     Demo(),
@@ -42,7 +42,7 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
       body: Center(  
         child: _widgetOptions.elementAt(_selectedIndex),  
       ),  
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 40,
         child: BottomNavigationBar(  
           backgroundColor: AppColor.lightgrey,
