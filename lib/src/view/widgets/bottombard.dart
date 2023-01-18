@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/core/app_color.dart';
-import 'package:news_app/src/helper/controller/circuitdigest_controller.dart';
 import 'package:news_app/src/view/screens/dashboard.dart';
-import 'package:provider/provider.dart';
+import '../screens/demo.dart';
 
 class MyNavigationBar extends StatefulWidget {  
-  MyNavigationBar ({Key? key}) : super(key: key);  
+  const MyNavigationBar ({Key? key}) : super(key: key);  
   
   @override  
   _MyNavigationBarState createState() => _MyNavigationBarState();  
@@ -15,7 +13,7 @@ class MyNavigationBar extends StatefulWidget {
 class _MyNavigationBarState extends State<MyNavigationBar > {  
   int _selectedIndex = 0;  
   static const List _widgetOptions = [  
-    Dashboard(),
+    Demo(),
     Dashboard(),
     Dashboard(),
     Dashboard(),
@@ -33,7 +31,6 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
   }  
   @override
   void initState() {
-    // TODO: implement initState
     // Provider.of<CircuitProvider>(context).floorPlanDetails;
     super.initState();
   }

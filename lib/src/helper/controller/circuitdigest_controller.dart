@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:news_app/src/helper/model/circui_digest_model.dart';
 import 'package:http/http.dart' as http;
@@ -17,10 +16,10 @@ class CircuitProvider with ChangeNotifier {
 
     // bannerID = id;
 
-    Map<String, dynamic> floorPlan = ({
-      'type': 'getprojectFloorPlanByID',
-      'value': '{ id:${jsonEncode(id)}}'
-    });
+    // Map<String, dynamic> floorPlan = ({
+    //   'type': 'getprojectFloorPlanByID',
+    //   'value': '{ id:${jsonEncode(id)}}'
+    // });
 
     try {
       final circuitdigestResponse = await http.get(

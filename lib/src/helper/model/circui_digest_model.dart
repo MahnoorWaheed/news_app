@@ -1,9 +1,3 @@
-// To parse this JSON data, do
-//
-//     final cicuitdigest = cicuitdigestFromJson(jsonString);
-
-import 'dart:convert';
-
 class Cicuitdigest {
     Cicuitdigest({
         this.title,
