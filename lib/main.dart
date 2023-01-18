@@ -5,7 +5,7 @@ import 'package:news_app/src/view/widgets/bottombard.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  // runApp(const MyApp());
+  runApp(const MyApp());
   MultiProvider(
           providers: [
            
