@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_app/core/app_color.dart';
-import 'package:news_app/src/helper/controller/circuitdigest_controller.dart';
+import 'package:news_app/utils/app_color.dart';
+import 'package:news_app/repo/circuitdigest_controller.dart';
 import 'package:news_app/src/helper/model/circui_digest_model.dart';
 import 'package:news_app/src/view/widgets/reusable_widgets.dart';
 import 'package:provider/provider.dart';
@@ -44,7 +44,7 @@ Future? interviewsFuture;
                             color:AppColor.darkBlue
                             )),
                            
-                             largeText("Lorem Ipsum", size: 17)
+                            //  largeText("Lorem Ipsum", size: 17)
                           ],
                         ),
                         Container(
@@ -54,13 +54,15 @@ Future? interviewsFuture;
                             itemBuilder: (context,i) {
                               return Column(
                                 children: [
+                                    HtmlWidget(snapshot.data![i].title!.
+                                  replaceAll("/sites/", "https://circuitdigest.com/sites/"),
+                                  textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w700),
+                                  ),
                                   HtmlWidget(snapshot.data![i].body!.
                                   replaceAll("/sites/", "https://circuitdigest.com/sites/"),
                                   textStyle: GoogleFonts.poppins(),
-                                  
                                   )
                                  
-                                   
                                 ],
                               );
                             }

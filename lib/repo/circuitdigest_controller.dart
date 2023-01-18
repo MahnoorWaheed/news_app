@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 
 
-  List<Cicuitdigest> circuitDetailList=[];
+List<Cicuitdigest> circuitDetailList=[];
   
   bool isLoading = false;
  Future<List<Cicuitdigest>> getInterviews() async {

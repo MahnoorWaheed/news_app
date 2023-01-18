@@ -1,5 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:news_app/core/app_color.dart';
+import 'package:news_app/utils/app_color.dart';
 import 'package:news_app/src/view/screens/dashboard.dart';
 import '../screens/demo.dart';
 
@@ -43,7 +44,7 @@ class MyNavigationBarState extends State<MyNavigationBar > {
         child: _widgetOptions.elementAt(_selectedIndex),  
       ),  
       bottomNavigationBar: SizedBox(
-        height: 40,
+        height: Platform.isIOS==true?75: 40,
         child: BottomNavigationBar(  
           backgroundColor: AppColor.lightgrey,
           items: const <BottomNavigationBarItem>[  

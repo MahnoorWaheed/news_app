@@ -3,8 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:news_app/core/app_color.dart';
-import 'package:news_app/src/helper/controller/circuitdigest_controller.dart';
+import 'package:news_app/utils/app_color.dart';
+import 'package:news_app/repo/circuitdigest_controller.dart';
 import 'package:news_app/src/helper/model/circui_digest_model.dart';
 import 'package:news_app/src/view/screens/dashboardDetails.dart';
 import 'package:news_app/src/view/widgets/reusable_widgets.dart';
@@ -152,7 +152,7 @@ Future? interviewsFuture;
                       clr: AppColor.darkBlue,
                       max: 2
                       ),
-                       const SizedBox(height: 20),
+                      //  const SizedBox(height: 20),
                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -177,15 +177,9 @@ Future? interviewsFuture;
                 child: CircularProgressIndicator(),
               );
                   }
-                  
-                  }
-                  
+                  }  
                 ),
               )
-            
-        
-            
-          
         ),
       ),
     );
