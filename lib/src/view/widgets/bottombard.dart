@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/core/app_color.dart';
+import 'package:news_app/src/helper/controller/circuitdigest_controller.dart';
 import 'package:news_app/src/view/screens/dashboard.dart';
+import 'package:provider/provider.dart';
 
 class MyNavigationBar extends StatefulWidget {  
   MyNavigationBar ({Key? key}) : super(key: key);  
@@ -29,6 +31,12 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
       _selectedIndex = index;  
     });  
   }  
+  @override
+  void initState() {
+    // TODO: implement initState
+    // Provider.of<CircuitProvider>(context).floorPlanDetails;
+    super.initState();
+  }
   
   @override  
   Widget build(BuildContext context) {  
