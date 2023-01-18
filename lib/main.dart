@@ -13,13 +13,14 @@ void main() {
   //    child: const MyApp(),
   // );
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider<CircuitProvider>(
-            create: (ctx) => CircuitProvider()),
-      ],
-      child: const MyApp(),
-    ),
+    MyApp()
+    // MultiProvider(
+    //   providers: [
+    //     ChangeNotifierProvider<CircuitProvider>(
+    //         create: (ctx) => CircuitProvider()),
+    //   ],
+    //   child: const MyApp(),
+    // ),
   );
 }
 

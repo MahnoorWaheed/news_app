@@ -30,12 +30,14 @@ Future? interviewsFuture;
         child: FutureBuilder<List<Cicuitdigest>>(
           future: getInterviews(),
           builder: (context, snapshot) {
-            if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+            if(snapshot.connectionState == ConnectionState.done
+             && snapshot.hasData){
               return ListView.builder(
               shrinkWrap: true,
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                return HtmlWidget(snapshot.data![index].body!.replaceAll("/sites/", "https://circuitdigest.com/sites/"));
+                return HtmlWidget(snapshot.data![index].body!.
+                replaceAll("/sites/", "https://circuitdigest.com/sites/"));
               },
             );
             } else {
@@ -51,9 +53,11 @@ Future? interviewsFuture;
 
 
 Future<List<Cicuitdigest>> getInterviews() async {
-    final reponse = await http.get(Uri.parse('http://45.33.23.205/circuitdigest_9/api-interviews'));
+    final reponse = await http.get(
+      Uri.parse('http://45.33.23.205/circuitdigest_9/api-interviews'));
 
-    List<Cicuitdigest> circuitDetailList = List<Cicuitdigest>.from(jsonDecode(reponse.body).map((x) => Cicuitdigest.fromJson(x)));
+    List<Cicuitdigest> circuitDetailList = List<Cicuitdigest>.from(
+      jsonDecode(reponse.body).map((x) => Cicuitdigest.fromJson(x)));
 
     return circuitDetailList;
   }

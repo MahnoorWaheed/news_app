@@ -13,7 +13,7 @@ class MyNavigationBar extends StatefulWidget {
 class MyNavigationBarState extends State<MyNavigationBar > {  
   int _selectedIndex = 0;  
   static const List _widgetOptions = [  
-    Demo(),
+    Dashboard(),
     Dashboard(),
     Dashboard(),
     Dashboard(),
