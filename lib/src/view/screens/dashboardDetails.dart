@@ -56,7 +56,9 @@ Future? interviewsFuture;
                                 children: [
                                     HtmlWidget(snapshot.data![i].title!.
                                   replaceAll("/sites/", "https://circuitdigest.com/sites/"),
-                                  textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w700),
+                                  textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w700, textStyle: TextStyle(
+                                    
+                                  )),
                                   ),
                                   HtmlWidget(snapshot.data![i].body!.
                                   replaceAll("/sites/", "https://circuitdigest.com/sites/"),
