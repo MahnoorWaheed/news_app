@@ -13,7 +13,8 @@ List<Cicuitdigest> circuitDetailList=[];
     final reponse = await http.get(
       Uri.parse('http://45.33.23.205/circuitdigest_9/api-interviews'));
 
-    List<Cicuitdigest> circuitDetailList = List<Cicuitdigest>.from(jsonDecode(reponse.body).map((x) => Cicuitdigest.fromJson(x)));
+    List<Cicuitdigest> circuitDetailList = 
+    List<Cicuitdigest>.from(jsonDecode(reponse.body).map((x) => Cicuitdigest.fromJson(x)));
     log(reponse.body.toString());
     return circuitDetailList;
     

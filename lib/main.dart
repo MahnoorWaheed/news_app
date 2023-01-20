@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/repo/circuitdigest_controller.dart';
+import 'package:news_app/src/helper/provider/loading_provider.dart';
 import 'package:news_app/src/view/widgets/bottombard.dart';
 import 'package:provider/provider.dart';
 
@@ -13,14 +14,14 @@ void main() {
   //    child: const MyApp(),
   // );
   runApp(
-    MyApp()
-    // MultiProvider(
-    //   providers: [
-    //     ChangeNotifierProvider<CircuitProvider>(
-    //         create: (ctx) => CircuitProvider()),
-    //   ],
-    //   child: const MyApp(),
-    // ),
+    // MyApp()
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<LoadingProvider>(
+            create: (ctx) => LoadingProvider()),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
