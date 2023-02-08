@@ -4,6 +4,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:news_app/src/helper/provider/loading_provider.dart';
+import 'package:news_app/src/view/screens/Interview/interview_vertical.dart';
+import 'package:news_app/src/view/screens/all_categories_Details.dart';
+import 'package:news_app/src/view/screens/Interview/interview_details.dart';
 import 'package:news_app/utils/app_color.dart';
 import 'package:news_app/repo/circuitdigest_controller.dart';
 import 'package:news_app/src/helper/model/circui_digest_model.dart';
@@ -36,6 +39,7 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -71,54 +75,61 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  reuableContainer(context,wtd: 40,
-                                  clr:value.isINDUSTRY==false&&value.isINTERVIEW==false&&value.isPRODUCT==false?
-                                   AppColor.lightBlue:AppColor.lightgrey,
-                                  onTap: (){
-                                  value.boolValue(false, false, false);
-                                  },
-                                  child: Center(child: smallText("ALL", clr:value.isINDUSTRY==false&&value.isINTERVIEW==false&&value.isPRODUCT==false? Colors.white:AppColor.darkBlue))
-                                  ),
-                                  reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.2,
-                                  clr: value.isINDUSTRY==false&&value.isINTERVIEW==false&&value.isPRODUCT==true?AppColor.lightBlue:AppColor.lightgrey,
-                                  onTap: (){
-                                  value.boolValue(false, true, false);
-                                  },
-                                  child: Center(child: smallText("Product", 
-                                  clr: value.isINDUSTRY==false&&value.isINTERVIEW==false&&value.isPRODUCT==true?Colors.white:AppColor.darkBlue)),
-                                  ),
-                                   reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.2,
-                                  clr: value.isINDUSTRY==true&&value.isINTERVIEW==false&&value.isPRODUCT==false?AppColor.lightBlue:AppColor.lightgrey,
-                                   onTap: (){
-                                    value.boolValue(false, false,true);
-                                   },
-                                  child: Center(child: smallText("Industry", 
-                                  clr: value.isINDUSTRY==true&&value.isINTERVIEW==false&&value.isPRODUCT==false?Colors.white:AppColor.darkBlue)),
-                                  ),
-                                  reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.2,
-                                  clr: value.isINDUSTRY==false&&value.isINTERVIEW==true&&value.isPRODUCT==false?AppColor.lightBlue:AppColor.lightgrey,
-                                   onTap: (){
+                                  // reuableContainer(context,wtd: 40,
+                                  // clr:value.isINDUSTRY==false&&value.isINTERVIEW==false&&value.isPRODUCT==false?
+                                  //  AppColor.lightBlue:AppColor.lightgrey,
+                                  // onTap: (){
+                                  // value.boolValue(false, false, false);
+                                  // },
+                                  // child: Center(child: smallText("ALL", clr:value.isINDUSTRY==false&&value.isINTERVIEW==false&&value.isPRODUCT==false? Colors.white:AppColor.darkBlue))
+                                  // ),
+                                  // reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.2,
+                                  // clr: value.isINDUSTRY==false&&value.isINTERVIEW==false&&value.isPRODUCT==true?AppColor.lightBlue:AppColor.lightgrey,
+                                  // onTap: (){
+                                  // // value.boolValue(false, true, false);
+                                  // },
+                                  // child: Center(child: smallText("Product", 
+                                  // clr: value.isINDUSTRY==false&&value.isINTERVIEW==false&&value.isPRODUCT==true?Colors.white:AppColor.darkBlue)),
+                                  // ),
+                                  //  reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.2,
+                                  // clr: value.isINDUSTRY==true&&value.isINTERVIEW==false&&value.isPRODUCT==false?AppColor.lightBlue:AppColor.lightgrey,
+                                  //  onTap: (){
+                                  //   // value.boolValue(false, false,true);
+                                  //  },
+                                  // child: Center(child: smallText("Industry", 
+                                  // clr: value.isINDUSTRY==true&&value.isINTERVIEW==false&&value.isPRODUCT==false?Colors.white:AppColor.darkBlue)),
+                                  // ),
+                                  // reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.2,
+                                  // clr: value.isINDUSTRY==false&&value.isINTERVIEW==true&&value.isPRODUCT==false?AppColor.lightBlue:AppColor.lightgrey,
+                                  //  onTap: (){
                                    
-                                    value.boolValue(true, false, false);
+                                  //   value.boolValue(true, false, false);
                                     
-                                   },
-                                  child: Center(child: smallText("Interview", 
-                                  clr:value.isINDUSTRY==false&&value.isINTERVIEW==true&&value.isPRODUCT==false? Colors.white:AppColor.darkBlue)),
-                                  ),
+                                  //  },
+                                  // child: Center(child: smallText("Interview", 
+                                  // clr:value.isINDUSTRY==false&&value.isINTERVIEW==true&&value.isPRODUCT==false? Colors.white:AppColor.darkBlue)),
+                                  // ),
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 20),
+                            // const SizedBox(height: 10),
                              Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                value.isINTERVIEW==true? 
-                                largeText("Interview"):value.isINDUSTRY==true?
-                                largeText("Industry"):value.isPRODUCT==true?
-                                largeText("Product"):largeText("ALL"),
+                                // value.isINTERVIEW==true? 
+                                // largeText("Interview")
+                                // :value.isINDUSTRY==true?
+                                // largeText("Industry"):value.isPRODUCT==true?
+                                // largeText("Product")
+                                // :largeText("ALL"),
+                                largeText("Interview"),
                                 Row(
                                   children: [
-                                    smallText("view all"),
+                                    GestureDetector(
+                                      onTap: (){
+                                        Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>InterviewVertical()));
+                                      },
+                                      child: smallText("view all")),
                                     const Icon(Icons.arrow_forward_ios, color: Colors.red, size: 10,)
                                   ],
                                 )
@@ -135,161 +146,173 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                                     child:
                                       value.isINTERVIEW==true? 
                                       Container(
-                                          height: MediaQuery.of(context).size.height*0.35,
+                                          height: MediaQuery.of(context).size.height*0.31,
                                                 width:MediaQuery.of(context).size.width ,
-                                                
+                                                // color: Colors.red,
                                           child: ListView.builder(
                                             scrollDirection: Axis.horizontal,
                                             itemCount: snapshot.data!.length,
                                             itemBuilder: (context, i) {
                                               return Padding(
                                                 padding: const EdgeInsets.all(8.0),
-                                                child:snapshot.data![i].fieldTags!.contains("Interview")==true?Column(
-                                                  children: [
-                                                    reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.2,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
-                                                    
-                                                    child: 
-                                                    
-                                                     ClipRRect(
-                                                      borderRadius: BorderRadius.circular(10),
-                                                      child: Image.network(snapshot.data![i].fieldImage!.
-                                                        replaceAll("/circuitdigest_9/sites/",
-                                                          "https://circuitdigest.com/sites/"),
-                                                          fit: BoxFit.cover,
-                                                          ),
-                                                    )),
-                                                    
-                                                    reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.1,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
-                                                    clr: Colors.white,
-                                                      child: largeText(snapshot.data![i].title!)),
-                                                  ],
+                                                child:snapshot.data![i].fieldTags!.contains("Interview")==true?
+                                                GestureDetector(
+                                                  onTap: (){
+                                                    Navigator.of(context).push(MaterialPageRoute(
+                                                      builder: ((context) => InterviewDetails(id: i))));
+                                                  },
+                                                  child: Column(
+                                                    children: [
+                                                      reuableContainer(context,
+                                                      hgt: MediaQuery.of(context).size.height*0.2,
+                                                      wtd:MediaQuery.of(context).size.width*0.6,
+                                                      
+                                                      child: 
+                                                      
+                                                       ClipRRect(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                        child: Image.network(snapshot.data![i].fieldImage!.
+                                                          replaceAll("/circuitdigest_9/sites/",
+                                                            "https://circuitdigest.com/sites/"),
+                                                            fit: BoxFit.cover,
+                                                            ),
+                                                      )
+                                                      ),
+                                                      
+                                                      reuableContainer(context,
+                                                      hgt: MediaQuery.of(context).size.height*0.085,
+                                                      wtd:MediaQuery.of(context).size.width*0.6,
+                                                      clr: Colors.white,
+                                                        child: largeText(snapshot.data![i].title!, 
+                                                        max: 3
+                                                        )),
+                                                    ],
+                                                  ),
                                                 ):largeText("txt")
                                              
                                              
                                               );
                                             }
                                           ),
-                                        ): 
+                                        )
+                                        : 
                                        
                                        
-                                       value.isINDUSTRY==true? Row(
-                                          children: [
+                                      //  value.isINDUSTRY==true? Row(
+                                      //     children: [
                                             
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Container(
-                                          height: MediaQuery.of(context).size.height*0.2,
-                                                width:MediaQuery.of(context).size.width ,
+                                      //       Padding(
+                                      //         padding: const EdgeInsets.all(8.0),
+                                      //         child: Container(
+                                      //     height: MediaQuery.of(context).size.height*0.2,
+                                      //           width:MediaQuery.of(context).size.width ,
                                                 
-                                          child: ListView.builder(
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: snapshot.data!.length,
-                                            itemBuilder: (context, i) {
-                                              return Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child:snapshot.data![i].fieldTags!.contains("Industry")==true?
-                                                Column(
-                                                  children: [
-                                                    reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.2,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
+                                      //     child: ListView.builder(
+                                      //       scrollDirection: Axis.horizontal,
+                                      //       itemCount: snapshot.data!.length,
+                                      //       itemBuilder: (context, i) {
+                                      //         return Padding(
+                                      //           padding: const EdgeInsets.all(8.0),
+                                      //           child:snapshot.data![i].fieldTags!.contains("Industry")==true?
+                                      //           Column(
+                                      //             children: [
+                                      //               reuableContainer(context,
+                                      //               hgt: MediaQuery.of(context).size.height*0.2,
+                                      //               wtd:MediaQuery.of(context).size.width*0.6,
                                                     
-                                                    child: 
+                                      //               child: 
                                                     
-                                                     ClipRRect(
-                                                      borderRadius: BorderRadius.circular(10),
-                                                      child: Image.network(snapshot.data![i].fieldImage!.
-                                                        replaceAll("/circuitdigest_9/sites/",
-                                                          "https://circuitdigest.com/sites/"),
-                                                          fit: BoxFit.cover,
-                                                          ),
-                                                    )),
+                                      //                ClipRRect(
+                                      //                 borderRadius: BorderRadius.circular(10),
+                                      //                 child: Image.network(snapshot.data![i].fieldImage!.
+                                      //                   replaceAll("/circuitdigest_9/sites/",
+                                      //                     "https://circuitdigest.com/sites/"),
+                                      //                     fit: BoxFit.cover,
+                                      //                     ),
+                                      //               )),
                                                     
-                                                    reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.14,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
-                                                    clr: Colors.white,
-                                                      child: largeText(snapshot.data![i].title!)),
-                                                  ],
-                                                ): reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.1,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
-                                                    ),
+                                      //               reuableContainer(context,
+                                      //               hgt: MediaQuery.of(context).size.height*0.14,
+                                      //               wtd:MediaQuery.of(context).size.width*0.6,
+                                      //               clr: Colors.white,
+                                      //                 child: largeText(snapshot.data![i].title!)),
+                                      //             ],
+                                      //           ): reuableContainer(context,
+                                      //               hgt: MediaQuery.of(context).size.height*0.1,
+                                      //               wtd:MediaQuery.of(context).size.width*0.6,
+                                      //               ),
                                              
                                           
-                                              );
-                                            }
-                                          ),
-                                        )
+                                      //         );
+                                      //       }
+                                      //     ),
+                                      //   )
                                        
                                        
-                                            ),
-                                          ],
-                                        ):
+                                      //       ),
+                                      //     ],
+                                      //   ):
                                        
                                        
-                                        value.isPRODUCT==true?
-                                        Row(
-                                          children: [
+                                      //   value.isPRODUCT==true?
+                                      //   Row(
+                                      //     children: [
                                             
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Container(
-                                          height: MediaQuery.of(context).size.height*0.2,
-                                                width:MediaQuery.of(context).size.width ,
+                                      //       Padding(
+                                      //         padding: const EdgeInsets.all(8.0),
+                                      //         child: Container(
+                                      //     height: MediaQuery.of(context).size.height*0.2,
+                                      //           width:MediaQuery.of(context).size.width ,
                                                 
-                                          child: ListView.builder(
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: snapshot.data!.length,
-                                            itemBuilder: (context, i) {
-                                              return Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child:
-                                                snapshot.data![i].fieldTags!.contains("Product")==true?
-                                                Column(
-                                                  children: [
-                                                    reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.2,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
+                                      //     child: ListView.builder(
+                                      //       scrollDirection: Axis.horizontal,
+                                      //       itemCount: snapshot.data!.length,
+                                      //       itemBuilder: (context, i) {
+                                      //         return Padding(
+                                      //           padding: const EdgeInsets.all(8.0),
+                                      //           child:
+                                      //           snapshot.data![i].fieldTags!.contains("Product")==true?
+                                      //           Column(
+                                      //             children: [
+                                      //               reuableContainer(context,
+                                      //               hgt: MediaQuery.of(context).size.height*0.2,
+                                      //               wtd:MediaQuery.of(context).size.width*0.6,
                                                     
-                                                    child: 
+                                      //               child: 
                                                     
-                                                     ClipRRect(
-                                                      borderRadius: BorderRadius.circular(10),
-                                                      child: Image.network(snapshot.data![i].fieldImage!.
-                                                        replaceAll("/circuitdigest_9/sites/",
-                                                          "https://circuitdigest.com/sites/"),
-                                                          fit: BoxFit.cover,
-                                                          ),
-                                                    )),
+                                      //                ClipRRect(
+                                      //                 borderRadius: BorderRadius.circular(10),
+                                      //                 child: Image.network(snapshot.data![i].fieldImage!.
+                                      //                   replaceAll("/circuitdigest_9/sites/",
+                                      //                     "https://circuitdigest.com/sites/"),
+                                      //                     fit: BoxFit.cover,
+                                      //                     ),
+                                      //               )),
                                                     
-                                                    reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.1,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
-                                                    clr: Colors.white,
-                                                      child: largeText(snapshot.data![i].title!)),
-                                                  ],
-                                                ): reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.1,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
-                                                    ),
+                                      //               reuableContainer(context,
+                                      //               hgt: MediaQuery.of(context).size.height*0.1,
+                                      //               wtd:MediaQuery.of(context).size.width*0.6,
+                                      //               clr: Colors.white,
+                                      //                 child: largeText(snapshot.data![i].title!)),
+                                      //             ],
+                                      //           ): reuableContainer(context,
+                                      //               hgt: MediaQuery.of(context).size.height*0.1,
+                                      //               wtd:MediaQuery.of(context).size.width*0.6,
+                                      //               ),
                                              
                                           
-                                              );
-                                            }
-                                          ),
-                                        )
+                                      //         );
+                                      //       }
+                                      //     ),
+                                      //   )
                                        
                                        
-                                            ),
-                                          ],
-                                        ):
+                                      //       ),
+                                      //     ],
+                                      //   ):
+                                        //////////
                                        Container(
-                                          height: MediaQuery.of(context).size.height*0.35,
+                                          height: MediaQuery.of(context).size.height*0.31,
                                                 width:MediaQuery.of(context).size.width ,
                                                 
                                           child: ListView.builder(
@@ -298,29 +321,33 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                                             itemBuilder: (context, i) {
                                               return Padding(
                                                 padding: const EdgeInsets.all(8.0),
-                                                child:Column(
-                                                  children: [
-                                                    reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.2,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
-                                                    
-                                                    child: 
-                                                    
-                                                     ClipRRect(
-                                                      borderRadius: BorderRadius.circular(10),
-                                                      child: Image.network(snapshot.data![i].fieldImage!.
-                                                        replaceAll("/circuitdigest_9/sites/",
-                                                          "https://circuitdigest.com/sites/"),
-                                                          fit: BoxFit.cover,
-                                                          ),
-                                                    )),
-                                                    
-                                                    reuableContainer(context,
-                                                    hgt: MediaQuery.of(context).size.height*0.1,
-                                                    wtd:MediaQuery.of(context).size.width*0.6,
-                                                    clr: Colors.white,
-                                                      child: largeText(snapshot.data![i].title!)),
-                                                  ],
+                                                child:GestureDetector(
+                                                  onTap: () =>  Navigator.of(context).push(MaterialPageRoute(
+                                                      builder: ((context) => AllCategoryDetails(id: i)))),
+                                                  child: Column(
+                                                    children: [
+                                                      reuableContainer(context,
+                                                      hgt: MediaQuery.of(context).size.height*0.2,
+                                                      wtd:MediaQuery.of(context).size.width*0.6,
+                                                      
+                                                      child: 
+                                                      
+                                                       ClipRRect(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                        child: Image.network(snapshot.data![i].fieldImage!.
+                                                          replaceAll("/circuitdigest_9/sites/",
+                                                            "https://circuitdigest.com/sites/"),
+                                                            fit: BoxFit.cover,
+                                                            ),
+                                                      )),
+                                                      
+                                                      reuableContainer(context,
+                                                      hgt: MediaQuery.of(context).size.height*0.085,
+                                                      wtd:MediaQuery.of(context).size.width*0.6,
+                                                      clr: Colors.white,
+                                                        child: largeText(snapshot.data![i].title!, max: 3)),
+                                                    ],
+                                                  ),
                                                 )
                                              
                                              
@@ -335,12 +362,14 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                                   ),
                                 ],
                               ),
+                            
+                            
                             ),
                             largeText("All News"),
                             const SizedBox(height: 10),
                             reuableContainer(context,
                                     hgt: MediaQuery.of(context).size.height*0.25,
-                                    wtd:MediaQuery.of(context).size.height*0.55 ,
+                                    wtd:MediaQuery.of(context).size.height*0.5 ,
                                     child: ClipRRect(
                                       child: Image.network(snapshot.data![0].fieldImage!.
                                                     replaceAll("/circuitdigest_9/sites/",
@@ -349,12 +378,13 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                                     )
                                     ),
                                   const SizedBox(height: 10),
-                          largeText(snapshot.data![0].title!),
+                          largeText(snapshot.data![0].title!, max: 1),
+                          const SizedBox(height: 10),
                           smallText(snapshot.data![0].body!,
                           clr: AppColor.darkBlue,
                           max: 2
                           ),
-                          //  const SizedBox(height: 20),
+                           const SizedBox(height: 20),
                              Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

@@ -32,10 +32,10 @@ GestureDetector reuableContainer(BuildContext context,
                   ),);
   }
 
-  Text largeText(String txt, {Color? clr,double? size}) {
+  Text largeText(String txt, {Color? clr,double? size,TextOverflow? overflow, int? max}) {
     return Text(txt,
-    overflow: TextOverflow.ellipsis,
-    maxLines: 4,
+    overflow:overflow?? TextOverflow.ellipsis,
+    maxLines: max??4,
                 style: GoogleFonts.poppins(
                   color: clr??const Color(0xFF1E4088),
                    fontWeight: FontWeight.w600,
