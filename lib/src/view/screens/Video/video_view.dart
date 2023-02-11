@@ -3,18 +3,24 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:news_app/repo/circuitdigest_controller.dart';
 import 'package:news_app/src/helper/model/news_model.dart';
+import 'package:news_app/src/helper/model/review_model.dart';
+import 'package:news_app/src/helper/model/videos_model.dart';
 import 'package:news_app/src/view/screens/Interview/interview_details.dart';
 import 'package:news_app/src/view/screens/Interview/interview_vertical.dart';
+import 'package:news_app/src/view/screens/Video/video_details.dart';
+import 'package:news_app/src/view/screens/Video/video_verticle.dart';
 import 'package:news_app/src/view/screens/dashboardDetails.dart';
 import 'package:news_app/src/view/screens/news/new_verticle_list.dart';
 import 'package:news_app/src/view/screens/news/news_details.dart';
+import 'package:news_app/src/view/screens/review/review_details.dart';
+import 'package:news_app/src/view/screens/review/review_vert.dart';
 import 'package:news_app/src/view/widgets/reusable_widgets.dart';
 import 'package:news_app/utils/app_color.dart';
 
 
-FutureBuilder<List<NewsModel>> newsOption() {
-    return FutureBuilder<List<NewsModel>>(
-                                future: getNews(),
+FutureBuilder<List<VideoModel>> videoOption() {
+    return FutureBuilder<List<VideoModel>>(
+                                future: getVideo(),
                                 builder: (context,snapshot) {
                                    if(snapshot.connectionState == ConnectionState.done
            && snapshot.hasData){
@@ -26,12 +32,12 @@ FutureBuilder<List<NewsModel>> newsOption() {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                              
-                              largeText("News"),
+                              largeText("Videos"),
                               Row(
                                 children: [
                                   GestureDetector(
                                     onTap: (){
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>NewsVerticleList()));
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>VideoVerticle()));
                                     },
                                     child: smallText("view all")),
                                   const Icon(Icons.arrow_forward_ios, color: Colors.red, size: 10,)
@@ -64,7 +70,7 @@ FutureBuilder<List<NewsModel>> newsOption() {
                                               GestureDetector(
                                                 onTap: (){
                                                   Navigator.of(context).push(MaterialPageRoute(
-                                                    builder: ((context) => NewsDetails(id: i))));
+                                                    builder: ((context) => VideoDetails(id: i))));
                                                 },
                                                 child: Column(
                                                   children: [
@@ -105,7 +111,7 @@ FutureBuilder<List<NewsModel>> newsOption() {
                                 ),
                               ],
                             ),),
-                          largeText("All News"),
+                          largeText("All Videos"),
                           const SizedBox(height: 10),
                           reuableContainer(context,
                                   hgt: MediaQuery.of(context).size.height*0.25,
@@ -131,7 +137,7 @@ FutureBuilder<List<NewsModel>> newsOption() {
                               largeText("Today, 7:52 PM"),
                               GestureDetector(
                                 onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const NewsVerticleList()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const VideoVerticle()));
                                 },
                                 child: Row(
                                   children: [
