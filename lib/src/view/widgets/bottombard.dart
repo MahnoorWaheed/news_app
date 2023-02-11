@@ -73,92 +73,118 @@ final _unselectedBgColor = Colors.blue;
                color: AppColor.lightgrey,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal:8.0, vertical: 0),
-                child: Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        _selectedIndex==0? Positioned(
-                          bottom: 30,
-                          child: indicatorContainer(0),):Text(""),
-                        GestureDetector(
-                         onTap: (){
-                           log(_selectedIndex.toString());
-                           _onItemTapped(0);
-                         },
-                         child: largeText("Interview")),
-                      ],
-                    ),
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        _selectedIndex==1? Positioned(
-                          bottom: 30,
-                          child: indicatorContainer(1),):Text(""),
-                        GestureDetector(
-                         onTap: (){
-                           log(_selectedIndex.toString());
-                           _onItemTapped(1);
-                         },
-                         child: largeText("Articles")),
-                      ],
-                    ),
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        _selectedIndex==2? Positioned(
-                          bottom: 30,
-                          child: indicatorContainer(2),):Text(""),
-                        GestureDetector(
-                         onTap: (){
-                           log(_selectedIndex.toString());
-                           _onItemTapped(2);
-                         },
-                         child: largeText("Store")),
-                      ],
-                    ),
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        _selectedIndex==3? Positioned(
-                          bottom: 30,
-                          child: indicatorContainer(3),):Text(""),
-                        GestureDetector(
-                         onTap: (){
-                           log(_selectedIndex.toString());
-                           _onItemTapped(3);
-                         },
-                         child: largeText("Projects")),
-                      ],
-                    ),
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        _selectedIndex==4? Positioned(
-                          bottom: 30,
-                          child: indicatorContainer(4),):Text(""),
-                        GestureDetector(
-                         onTap: (){
-                           log(_selectedIndex.toString());
-                           _onItemTapped(4);
-                         },
-                         child: largeText("Calculate")),
-                      ],
-                    )
-                  ],
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      //  
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          _selectedIndex==0? Positioned(
+                            bottom: 30,
+                            child: indicatorContainer(1),):Text(""),
+                          GestureDetector(
+                           onTap: (){
+                             log(_selectedIndex.toString());
+                             _onItemTapped(1);
+                           },
+                           child: largeText("News")),
+                        ],
+                      ),
+                      SizedBox(width: 10,),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          _selectedIndex==1? Positioned(
+                            bottom: 30,
+                            child: indicatorContainer(0),):Text(""),
+                          GestureDetector(
+                           onTap: (){
+                             log(_selectedIndex.toString());
+                             _onItemTapped(0);
+                           },
+                           child: largeText("Interview")),
+                        ],
+                      ),
+                     
+                      SizedBox(width: 10,),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          _selectedIndex==2? Positioned(
+                            bottom: 30,
+                            child: indicatorContainer(1),):Text(""),
+                          GestureDetector(
+                           onTap: (){
+                             log(_selectedIndex.toString());
+                             _onItemTapped(1);
+                           },
+                           child: largeText("Articles")),
+                        ],
+                      ),
+                      SizedBox(width: 10,),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          _selectedIndex==3? Positioned(
+                            bottom: 30,
+                            child: indicatorContainer(2),):Text(""),
+                          GestureDetector(
+                           onTap: (){
+                             log(_selectedIndex.toString());
+                             _onItemTapped(2);
+                           },
+                           child: largeText("Store")),
+                        ],
+                      ),
+                      SizedBox(width: 10,),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          _selectedIndex==4? Positioned(
+                            bottom: 30,
+                            child: indicatorContainer(3),):Text(""),
+                          GestureDetector(
+                           onTap: (){
+                             log(_selectedIndex.toString());
+                             _onItemTapped(3);
+                           },
+                           child: largeText("Projects")),
+                        ],
+                      ),
+                      SizedBox(width: 10,),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          _selectedIndex==5? Positioned(
+                            bottom: 30,
+                            child: indicatorContainer(4),):Text(""),
+                          GestureDetector(
+                           onTap: (){
+                             log(_selectedIndex.toString());
+                             _onItemTapped(4);
+                           },
+                           child: largeText("Calculate")),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
+        
+        
         ],
       ),
       ),  
     );  
   }
    indicatorContainer(int index) {
-    return index==0||index==1||index==2||index==3||index==4?Container(
+    return index==0||index==1||index==2||index==3||index==4||index==5?Container(
                 padding: EdgeInsets.zero,
-                                 width: index==0? 70:index==1?60:index==2?40:index==3?60:70,height: 5,
+                                 width: index==0?30:index==1?60:index==2?40:index==3?60:70,height: 5,
                                  margin: EdgeInsets.zero,
                                  decoration: BoxDecoration(
                 color: Colors.red,
