@@ -43,6 +43,7 @@ dependencies:
   flutter_html: ^2.2.1
   bottom_indicator_bar: ^2.0.0
   bottom_navy_bar: ^6.0.0
+  infinite_scroll: ^1.1.1
 
 dev_dependencies:
   flutter_test:

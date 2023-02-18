@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/repo/circuitdigest_controller.dart';
 import 'package:news_app/src/helper/provider/loading_provider.dart';
+import 'package:news_app/src/view/screens/news/new_infinit.dart';
 import 'package:news_app/src/view/widgets/bottombard.dart';
 import 'package:provider/provider.dart';
 
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyNavigationBar(),
+      // home:  NewsPageView(),
+      home: MyNavigationBar(),
 
     );
   }
