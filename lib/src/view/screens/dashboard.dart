@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/src/helper/model/news_model.dart';
 import 'package:news_app/src/helper/provider/loading_provider.dart';
 import 'package:news_app/src/view/screens/Forum/forum_view.dart';
@@ -16,6 +17,7 @@ import 'package:news_app/src/view/screens/events/event_view.dart';
 import 'package:news_app/src/view/screens/miicrocontroller/microcontroller_view.dart';
 import 'package:news_app/src/view/screens/news/news.dart';
 import 'package:news_app/src/view/screens/review/review_view.dart';
+import 'package:news_app/src/view/screens/search_screen.dart';
 import 'package:news_app/src/view/screens/tutorials/tutorial_view.dart';
 import 'package:news_app/utils/app_color.dart';
 import 'package:news_app/repo/circuitdigest_controller.dart';
@@ -35,18 +37,25 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
 Future? interviewsFuture, newsFuture;
 bool isInterview = false;
-bool isIndustry = false;
-bool isProduct = false;
-List<String> Product=['Electric Vehicles', 'Drones'];
-List<String> Industry=['IoT', 'Electronics Manufacturing',];
-
+bool isNews = true;
+bool onsubmit = false;
+List<dynamic> _dataList = [];
+  List<dynamic> _filteredDataList = [];
+  TextEditingController _searchController = TextEditingController();
+List<String> _filteredItems = [];
+List<Map<String, dynamic>> _filteredData = [];
+NewsModel? newsModel;
+var data;
   @override
   void initState() {
     super.initState();
-
     interviewsFuture = getInterviews();
     newsFuture=getNews();
-  }
+  } 
+ 
+
+ 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,10 +75,33 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                                   color:AppColor.darkBlue
                                   )),
                                   const SizedBox(width: 35,),
-                                  reuableContainer(context,
-                                  child: Center(
-                                    child: smallText("Search", clr: AppColor.darkBlue),
-                                  )),
+                                  GestureDetector(
+                                    onTap: (){
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>MyWidget()));
+                                    },
+                                    child: reuableContainer(context,
+                                    child: Center(child: Text("Search", style: GoogleFonts.poppins(),)),
+                                    // child: TextFormField(
+                                    //   controller: _searchController,
+                                    //   decoration:  InputDecoration(
+                                    //     border: const OutlineInputBorder(
+                                    //       borderSide: BorderSide.none,
+                                          
+                                    //     ),
+                                    //     hintText: _error??"Search",
+                                    //     // label: Text(_error??"Search"),
+                                    //     contentPadding: EdgeInsets.only(top: 10, left: 10)
+                                    //   ),
+                                    //  onChanged: (value) {
+                                    //           setState(() {
+                                    //             _filteredDataList = _dataList.where((item) =>
+                                    //              item['title'].toLowerCase().contains(value.toLowerCase())).toList();
+                                    //           });
+                                    //         },
+                                                                 
+                                    // )
+                                    ),
+                                  ),
                                 ],
                               ),
                               Container(
@@ -82,85 +114,97 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                                 children: [
                                   
                                   reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.15,
-                                  clr: value.isNews?
+                                  clr: isNews==true?
                                   AppColor.lightBlue:AppColor.lightgrey,
                                   onTap: (){
+                                    setState(() {
+                                     isNews=true;
+                                     
+                                    });
                                   value.boolValue(true,false,false,false,false,false,false,false,false,false);
                                   },
                                   child: Center(child: smallText("News", 
-                                  clr: value.isNews?Colors.white:AppColor.darkBlue)),
+                                  clr: isNews==true?Colors.white:AppColor.darkBlue)),
                                   ),
                                    
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal:8.0),
-                                    child: reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.25,
-                                    clr: value.isINTERVIEW?
+                                    child: reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.2,
+                                    clr: value.isINTERVIEW==true?
                                     AppColor.lightBlue:AppColor.lightgrey,
                                      onTap: (){
-                                     
+                                      setState(() {
+                                        
+                                     isNews=false;
+                                   
+                                      });
                                       value.boolValue(false,true,false,false,false,false,false,false,false,false);
                                       
                                      },
                                     child: Center(child: smallText("Interview", 
-                                    clr:value.isINTERVIEW?
+                                    clr:value.isINTERVIEW==true?
                                      Colors.white:AppColor.darkBlue)),
                                     ),
                                   ),
 
 
-                                  reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.3,
-                                  clr: value.isELECTRON?
+                                  reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.2,
+                                  clr: value.isELECTRON==true?
                                   AppColor.lightBlue:AppColor.lightgrey,
                                   onTap: (){
                                   value.boolValue(false,false,true,false,false,false,false,false,false,false);
                                   },
-                                  child: Center(child: smallText("Electronic Circuits ", 
+                                  child: Center(child: smallText("Circuits ", 
                                   clr:
-                                  value.isELECTRON?Colors.white:AppColor.darkBlue)),
+                                  value.isELECTRON==true?Colors.white:AppColor.darkBlue)),
                                   ),
 
                                   Padding(
                                    padding: const EdgeInsets.symmetric(horizontal:8.0),
                                     child: reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.15,
-                                    clr: value.isEVENT?
+                                    clr: value.isEVENT==true?
                                     AppColor.lightBlue:AppColor.lightgrey,
                                     onTap: (){
+                                      
                                     value.boolValue(false,false,false,true,false,false,false,false,false,false);
                                     },
                                     child: Center(child: smallText("Events ", 
                                     clr: 
-                                    value.isEVENT?Colors.white:AppColor.darkBlue)),
+                                    value.isEVENT==true?Colors.white:AppColor.darkBlue)),
                                     ),
                                   ),
 
                                   reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.25,
-                                  clr: value.isFORUM?
+                                  clr: value.isFORUM==true?
                                   AppColor.lightBlue:AppColor.lightgrey,
                                   onTap: (){
+                                    
                                   value.boolValue(false,false,false,false,true,false,false,false,false,false);
                                   },
                                   child: Center(child: smallText("forum-topic ", 
                                   clr: 
-                                  value.isFORUM?Colors.white:AppColor.darkBlue)),
+                                  value.isFORUM==true?Colors.white:AppColor.darkBlue)),
                                   ),
 
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal:8.0),
-                                    child: reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.25,
-                                    clr:value.isMICRO?
+                                    child: reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.3,
+                                    clr:value.isMICRO==true?
                                     AppColor.lightBlue:AppColor.lightgrey,
                                     onTap: (){
+                                      
                                     value.boolValue(false,false,false,false,false,true,false,false,false,false);
                                     },
                                     child: Center(child: smallText("Microcontroller ", 
                                     clr:
-                                    value.isMICRO?Colors.white:AppColor.darkBlue)),
+                                    value.isMICRO==true?Colors.white:AppColor.darkBlue)),
                                     ),
                                   ),
                                   reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.25,
-                                  clr: value.isREVIEW?
+                                  clr: value.isREVIEW==true?
                                   AppColor.lightBlue:AppColor.lightgrey,
                                   onTap: (){
+                                    
                                   value.boolValue(false,false,false,false,false,false,true,false,false,false);
                                   },
                                   child: Center(child: smallText("Review ", 
@@ -170,54 +214,59 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                                   Padding(
                                    padding: const EdgeInsets.symmetric(horizontal:8.0),
                                     child: reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.25,
-                                    clr: value.isVIDEO?
+                                    clr: value.isVIDEO==true?
                                     AppColor.lightBlue:AppColor.lightgrey,
                                     onTap: (){
+                                      
                                     value.boolValue(false,false,false,false,false,false,false,true,false,false);
                                     },
                                     child: Center(child: smallText("Videos ", 
                                     clr: 
-                                    value.isVIDEO?Colors.white:AppColor.darkBlue)),
+                                    value.isVIDEO==true?Colors.white:AppColor.darkBlue)),
                                     ),
                                   ),
                                   reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.25,
-                                  clr: value.isTUTORIAL?
+                                  clr: value.isTUTORIAL==true?
                                   AppColor.lightBlue:AppColor.lightgrey,
                                   onTap: (){
+                                    
                                   value.boolValue(false,false,false,false,false,false,false,false,true,false);
                                   },
                                   child: Center(child: smallText("Tutorials ", 
                                   clr:
-                                  value.isTUTORIAL?Colors.white:AppColor.darkBlue)),
+                                  value.isTUTORIAL==true?Colors.white:AppColor.darkBlue)),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal:8.0),
                                     child: reuableContainer(context,wtd: MediaQuery.of(context).size.width*0.25,
-                                    clr:value.isARTICLE?
+                                    clr:value.isARTICLE==true?
                                     AppColor.lightBlue:AppColor.lightgrey,
                                     onTap: (){
                                     value.boolValue(false,false,false,false,false,false,false,false,false,true);
                                     },
                                     child: Center(child: smallText("Articles ", 
                                     clr: 
-                                    value.isARTICLE?Colors.white:AppColor.darkBlue)),
+                                    value.isARTICLE==true?Colors.white:AppColor.darkBlue)),
                                     ),
                                   ),
-                                  
-
-                                ],
+                                  ],
                               ),
                             ),
                           ),
                           const SizedBox(height: 10),
                           
-                       value.isINTERVIEW? interviewOption():
-                       value.isNews?newsOption():value.isELECTRON? electronicCircuitOption():
-                       value.isEVENT?eventOption():
-                       value.isFORUM?forumOption(): 
-                       value.isMICRO? microOption():value.isREVIEW?reviewOption():
-                       value.isVIDEO?videoOption():value.isTUTORIAL?tutorialOption():value.isARTICLE?articleOption():
-                        newsOption(),
+                       value.isINTERVIEW? interviewOption(_filteredDataList, onsubmit):
+                       value.isNews?newsOption(_filteredDataList, onsubmit):
+                       value.isELECTRON? electronicCircuitOption(_filteredDataList,onsubmit):
+                       value.isEVENT?eventOption(_filteredDataList, onsubmit):
+                       value.isFORUM?forumOption(_filteredDataList, onsubmit): 
+                       value.isMICRO? microOption(_filteredDataList, onsubmit):
+                       value.isREVIEW?reviewOption(_filteredDataList, onsubmit):
+                       value.isVIDEO?videoOption(_filteredDataList, onsubmit):
+                       value.isTUTORIAL?tutorialOption(_filteredDataList, onsubmit):
+                       value.isARTICLE?
+                       articleOption(_filteredDataList,onsubmit):
+                        newsOption(_filteredDataList, onsubmit),
                       ],
                     ),
                   )
@@ -230,7 +279,7 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
     );
   }
 
-  FutureBuilder<List<Cicuitdigest>> interviewOption() {
+  FutureBuilder<List<Cicuitdigest>> interviewOption( List<dynamic> _searchResults,bool onsubmit) {
     return FutureBuilder<List<Cicuitdigest>>(
                                 future: getInterviews(),
                                 builder: (context,snapshot) {
@@ -272,6 +321,62 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                                   padding: const EdgeInsets.all(0.0),
                                   child:
                                     // value.isINTERVIEW? 
+                                    onsubmit==true?Container(
+                                        height: MediaQuery.of(context).size.height*0.31,
+                                              width:MediaQuery.of(context).size.width ,
+                                              // color: Colors.red,
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount:
+                                          _searchResults.length,
+                                            // snapshot.data!.length,
+                                          itemBuilder: (context, i) {
+                                            return Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child:
+                                              // snapshot.data![i].fieldTags!.contains("Interview")?
+                                              GestureDetector(
+                                                onTap: (){
+                                                  Navigator.of(context).push(MaterialPageRoute(
+                                                    builder: ((context) => InterviewDetails(id: i))));
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    reuableContainer(context,
+                                                    hgt: MediaQuery.of(context).size.height*0.2,
+                                                    wtd:MediaQuery.of(context).size.width*0.6,
+                                                    
+                                                    child: 
+                                                    
+                                                     ClipRRect(
+                                                      borderRadius: BorderRadius.circular(10),
+                                                      child: Image.network( _searchResults[i]["field_image"]!.
+                                                        replaceAll("/circuitdigest_9/sites/",
+                                                          "https://circuitdigest.com/sites/"),
+                                                          fit: BoxFit.cover,
+                                                          ),
+                                                    )
+                                                    ),
+                                                    
+                                                    reuableContainer(context,
+                                                    hgt: MediaQuery.of(context).size.height*0.085,
+                                                    wtd:MediaQuery.of(context).size.width*0.6,
+                                                    clr: Colors.white,
+                                                      child: largeText(_searchResults[i]["title"]!, 
+                                                      max: 3
+                                                      )),
+                                                  ],
+                                                ),
+                                              )
+                                              // :largeText("txt")
+                                           
+                                           
+                                            );
+                                          }
+                                        ),
+                                      )
+                                    
+                                    :
                                     Container(
                                         height: MediaQuery.of(context).size.height*0.31,
                                               width:MediaQuery.of(context).size.width ,
@@ -377,6 +482,8 @@ List<String> Industry=['IoT', 'Electronics Manufacturing',];
                 }
                 }  
               );
+  
+  
   }
 
 

@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:news_app/repo/circuitdigest_controller.dart';
 import 'package:news_app/src/helper/model/news_model.dart';
+import 'package:news_app/src/helper/provider/loading_provider.dart';
 import 'package:news_app/src/view/screens/Interview/interview_details.dart';
 import 'package:news_app/src/view/screens/Interview/interview_vertical.dart';
 import 'package:news_app/src/view/screens/dashboardDetails.dart';
@@ -12,7 +13,10 @@ import 'package:news_app/src/view/widgets/reusable_widgets.dart';
 import 'package:news_app/utils/app_color.dart';
 
 
-FutureBuilder<List<NewsModel>> newsOption() {
+
+
+
+FutureBuilder<List<NewsModel>> newsOption(List<dynamic> _searchResults, bool onsubmit) {
     return FutureBuilder<List<NewsModel>>(
                                 future: getNews(),
                                 builder: (context,snapshot) {
@@ -49,13 +53,14 @@ FutureBuilder<List<NewsModel>> newsOption() {
                                   padding: const EdgeInsets.all(0.0),
                                   child:
                                     // value.isINTERVIEW? 
-                                    Container(
+ onsubmit==true? Container(
                                         height: MediaQuery.of(context).size.height*0.31,
                                               width:MediaQuery.of(context).size.width ,
                                               // color: Colors.red,
                                         child: ListView.builder(
                                           scrollDirection: Axis.horizontal,
-                                          itemCount: snapshot.data!.length,
+                                          itemCount:
+                                          _searchResults.length,
                                           itemBuilder: (context, i) {
                                             return Padding(
                                               padding: const EdgeInsets.all(8.0),
@@ -76,7 +81,8 @@ FutureBuilder<List<NewsModel>> newsOption() {
                                                     
                                                      ClipRRect(
                                                       borderRadius: BorderRadius.circular(10),
-                                                      child: Image.network(snapshot.data![i].fieldImage!.
+                                                      child: Image.network(
+                                                        _searchResults[i]["field_image"].
                                                         replaceAll("/circuitdigest_9/sites/",
                                                           "https://circuitdigest.com/sites/"),
                                                           fit: BoxFit.cover,
@@ -88,7 +94,67 @@ FutureBuilder<List<NewsModel>> newsOption() {
                                                     hgt: MediaQuery.of(context).size.height*0.085,
                                                     wtd:MediaQuery.of(context).size.width*0.6,
                                                     clr: Colors.white,
-                                                      child: largeText(snapshot.data![i].title!, 
+                                                      child: largeText(
+                                                        _searchResults[i]["title"], 
+                                                      max: 3
+                                                      )),
+                                                  ],
+                                                ),
+                                              )
+                                              // :largeText("txt")
+                                           
+                                           
+                                            );
+                                          }
+                                        ),
+                                      ):
+                                     
+                                    Container(
+                                        height: MediaQuery.of(context).size.height*0.31,
+                                              width:MediaQuery.of(context).size.width ,
+                                              // color: Colors.red,
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount:
+                                          
+                                            snapshot.data!.length,
+                                          itemBuilder: (context, i) {
+                                            return Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child:
+                                              // snapshot.data![i].fieldTags!.contains("Interview")?
+                                              GestureDetector(
+                                                onTap: (){
+                                                  Navigator.of(context).push(MaterialPageRoute(
+                                                    builder: ((context) => NewsDetails(id: i))));
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    reuableContainer(context,
+                                                    hgt: MediaQuery.of(context).size.height*0.2,
+                                                    wtd:MediaQuery.of(context).size.width*0.6,
+                                                    
+                                                    child: 
+                                                    
+                                                     ClipRRect(
+                                                      borderRadius: BorderRadius.circular(10),
+                                                      child: Image.network(
+                                                       
+                                                        snapshot.data![i].fieldImage!.
+                                                        replaceAll("/circuitdigest_9/sites/",
+                                                          "https://circuitdigest.com/sites/"),
+                                                          fit: BoxFit.cover,
+                                                          ),
+                                                    )
+                                                    ),
+                                                    
+                                                    reuableContainer(context,
+                                                    hgt: MediaQuery.of(context).size.height*0.085,
+                                                    wtd:MediaQuery.of(context).size.width*0.6,
+                                                    clr: Colors.white,
+                                                      child: largeText(
+                                                       
+                                                        snapshot.data![i].title!, 
                                                       max: 3
                                                       )),
                                                   ],

@@ -12,12 +12,13 @@ import 'package:news_app/src/helper/model/news_model.dart';
 import 'package:news_app/src/helper/model/review_model.dart';
 import 'package:news_app/src/helper/model/tutorial_model.dart';
 import 'package:news_app/src/helper/model/videos_model.dart';
+import 'package:news_app/src/view/screens/news/new_infinit.dart';
 
 
 
 List<Cicuitdigest> circuitDetailList=[];
 List<NewsModel> newsList=[];
-  
+  int _page = 1;
   bool isLoading = false;
  Future<List<Cicuitdigest>> getInterviews() async {
     final reponse = await http.get(
@@ -136,3 +137,43 @@ Future<List<EventModel>> getEvent() async {
     return eventList;
     
 }
+
+// Future<List<NewsModel>> fetchData() async {
+//   final List<NewsModel> news = [];
+//   int page = 1;
+//   while (true) {
+//     final response = await http.get(Uri.parse
+//     ('http://45.33.23.205/circuitdigest_9/api-news?page=$page'));
+
+//     if (response.statusCode == 200) {
+//       // If the API call was successful, parse the JSON data.
+//       List data = json.decode(response.body);
+//       log(response.body); 
+//       if (data.isEmpty) {
+//         // If the data is empty, break out of the loop.
+//         break;
+//       }
+//       // Convert the JSON data into a list of News objects.
+//       news.addAll(data.map((d) => NewsModel.fromJson(d)).toList());
+//       // Increment the page number.
+//       // page++;
+//     } else {
+//       // If the API call was unsuccessful, throw an exception.
+//       throw Exception('Failed to load data');
+//     }
+//   }
+
+//   return news;
+// }
+
+
+Future<List<NewsModel>> fetchData(String query) async {
+  final response = await http.get(Uri.parse('http://45.33.23.205/circuitdigest_9/api-news?key=$query'));
+  if (response.statusCode == 200) {
+    List<dynamic> data = json.decode(response.body);
+    return data.map((news) => NewsModel.fromJson(news)).toList();
+  } else {
+    throw Exception('Failed to load data');
+  }
+}
+
